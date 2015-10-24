@@ -2,7 +2,7 @@ spring:
   profiles: prod
   datasource:
     driverClassName: org.postgresql.Driver
-    url: $database.url
+    url: ${DATABASE_URL}
     username: username
     password: password
 
