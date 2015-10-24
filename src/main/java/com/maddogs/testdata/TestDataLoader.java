@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import com.maddogs.domain.*;
 import com.maddogs.repo.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -11,6 +12,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
+@Profile(value = "dev")
 public class TestDataLoader {
 
     private TagTypeRepository tagTypeRepository;
