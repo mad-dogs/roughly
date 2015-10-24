@@ -12,7 +12,7 @@ public class Tag extends PersistableDomainObject{
     private TagType tagType;
     @ManyToOne
     private User creator;
-    @OneToMany(cascade = CascadeType.PERSIST)
+    @OneToMany
     private List<Need> needs;
     private LocalDateTime createdDateTime;
     private int numberOfPeople;

@@ -1,6 +1,5 @@
 package com.maddogs.domain;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -14,7 +13,7 @@ public class Run extends PersistableDomainObject {
     private User creator;
     private LocalDateTime createdDateTime;
 
-    @OneToMany(cascade = CascadeType.PERSIST)
+    @OneToMany
     private List<Inventory> inventory;
 
     public Run() {
