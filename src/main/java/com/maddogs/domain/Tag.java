@@ -1,9 +1,6 @@
 package com.maddogs.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -19,6 +16,8 @@ public class Tag extends PersistableDomainObject{
     private LocalDateTime createdDateTime;
     private int numberOfPeople;
     private int numberOfDogs;
+    @Embedded
+    private Location position;
 
     public Tag() {
     }
@@ -69,5 +68,13 @@ public class Tag extends PersistableDomainObject{
 
     public void setNumberOfDogs(int numberOfDogs) {
         this.numberOfDogs = numberOfDogs;
+    }
+
+    public Location getPosition() {
+        return position;
+    }
+
+    public void setPosition(Location position) {
+        this.position = position;
     }
 }

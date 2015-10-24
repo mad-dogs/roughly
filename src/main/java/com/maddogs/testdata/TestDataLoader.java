@@ -63,9 +63,9 @@ public class TestDataLoader {
         Need coatNeed = this.needRepository.save(need(coat));
 
         //Tag
-        Tag sleepingBagTag = this.tagRepository.save(tag(user1, transientType, 1, 0, Lists.newArrayList(sleepingBagNeed)));
-        Tag socksTag = this.tagRepository.save(tag(user2, transientType, 1, 1, Lists.newArrayList(socksNeed)));
-        Tag coatTag = this.tagRepository.save(tag(user3, settlementType, 15, 3, Lists.newArrayList(coatNeed)));
+        Tag sleepingBagTag = this.tagRepository.save(tag(user1, transientType, 1, 0, Lists.newArrayList(sleepingBagNeed), 53.476502, -2.254252));
+        Tag socksTag = this.tagRepository.save(tag(user2, transientType, 1, 1, Lists.newArrayList(socksNeed), 53.475870, -2.250840));
+        Tag coatTag = this.tagRepository.save(tag(user3, settlementType, 15, 3, Lists.newArrayList(coatNeed), 53.471586, -2.238470));
 
         //Inventory
         Inventory sleepingBagInventory = this.inventoryRepository.save(inventory(sleepingBag));
@@ -112,7 +112,7 @@ public class TestDataLoader {
         return need;
     }
 
-    private Tag tag(User user, TagType tagType, int numberOfPeople, int numberOfDogs, List<Need> needs){
+    private Tag tag(User user, TagType tagType, int numberOfPeople, int numberOfDogs, List<Need> needs, double lat, double lng){
         Tag tag = new Tag();
         tag.setCreatedDateTime(LocalDateTime.now());
         tag.setCreator(user);
@@ -120,6 +120,8 @@ public class TestDataLoader {
         tag.setNumberOfPeople(numberOfPeople);
         tag.setNumberOfDogs(numberOfDogs);
         tag.setNeeds(needs);
+        Location position = new Location(lat, lng);
+        tag.setPosition(position);
         return tag;
     }
 
