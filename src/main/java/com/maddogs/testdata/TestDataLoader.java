@@ -58,9 +58,9 @@ public class TestDataLoader {
         Organisation organisation1 = this.organisationRepository.save(organisation("Mad Dogs", Lists.newArrayList(user1, user3)));
 
         //Need
-        Need sleepingBagNeed = this.needRepository.save(need(sleepingBag));
-        Need socksNeed = this.needRepository.save(need(socks));
-        Need coatNeed = this.needRepository.save(need(coat));
+        Need sleepingBagNeed = need(sleepingBag);
+        Need socksNeed = need(socks);
+        Need coatNeed = need(coat);
 
         //Tag
         Tag sleepingBagTag = this.tagRepository.save(tag(user1, transientType, 1, 0, Lists.newArrayList(sleepingBagNeed), 53.476502, -2.254252));

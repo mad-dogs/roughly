@@ -1,5 +1,7 @@
 package com.maddogs.domain;
 
+import org.springframework.data.rest.core.annotation.RestResource;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -12,7 +14,8 @@ public class Tag extends PersistableDomainObject{
     private TagType tagType;
     @ManyToOne
     private User creator;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
+    @RestResource(exported = false)
     private List<Need> needs;
     private LocalDateTime createdDateTime;
     private int numberOfPeople;
