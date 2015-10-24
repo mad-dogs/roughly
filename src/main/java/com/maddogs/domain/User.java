@@ -2,9 +2,11 @@ package com.maddogs.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.List;
 
 @Entity
+@Table(name = "tuser")
 public class User extends PersistableDomainObject{
 
     private String name;
