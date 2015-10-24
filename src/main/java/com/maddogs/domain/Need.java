@@ -22,4 +22,12 @@ public class Need extends PersistableDomainObject {
     public void setItem(Item item) {
         this.item = item;
     }
+
+    public Inventory getFulfilledBy() {
+        return fulfilledBy;
+    }
+
+    public void setFulfilledBy(Inventory fulfilledBy) {
+        this.fulfilledBy = fulfilledBy;
+    }
 }
