@@ -15,6 +15,8 @@ public interface TagProjection {
 
     LocalDateTime getCreatedDateTime();
 
+    LocalDateTime getExpiredDateTime();
+
     Location getPosition();
 
     TagType getTagType();

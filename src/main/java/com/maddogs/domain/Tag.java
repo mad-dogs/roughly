@@ -15,6 +15,7 @@ public class Tag extends PersistableDomainObject{
     @OneToMany
     private List<Need> needs;
     private LocalDateTime createdDateTime;
+    private LocalDateTime expireDateTime;
     private int numberOfPeople;
     private int numberOfDogs;
     @Embedded
@@ -55,6 +56,14 @@ public class Tag extends PersistableDomainObject{
         this.createdDateTime = createdDateTime;
     }
 
+    public LocalDateTime getExpiredDateTime() {
+        return expireDateTime;
+    }
+
+    public void setExpiredDateTime(LocalDateTime expireDateTime) {
+        this.expireDateTime= expireDateTime;
+    }
+
     public int getNumberOfPeople() {
         return numberOfPeople;
     }
@@ -82,4 +91,5 @@ public class Tag extends PersistableDomainObject{
     public List<Item> getNeedItems(){
         return needs.stream().map(need -> need.getItem()).collect(Collectors.toList());
     }
+
 }
