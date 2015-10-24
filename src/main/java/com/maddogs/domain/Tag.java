@@ -3,6 +3,7 @@ package com.maddogs.domain;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 public class Tag extends PersistableDomainObject{
@@ -76,5 +77,9 @@ public class Tag extends PersistableDomainObject{
 
     public void setPosition(Location position) {
         this.position = position;
+    }
+
+    public List<Item> getNeedItems(){
+        return needs.stream().map(need -> need.getItem()).collect(Collectors.toList());
     }
 }
