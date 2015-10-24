@@ -21,12 +21,13 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public void login(@RequestParam String email, @RequestParam String password, HttpServletResponse response){
+    public User login(@RequestParam String email, @RequestParam String password, HttpServletResponse response){
         User user = this.userRepository.findOneByEmail(email);
         if(null != user && user.getPassword().equals(password)){
-            response.setStatus(HttpServletResponse.SC_OK);
+            return user;
         }else{
             response.setStatus(HttpServletResponse.SC_FORBIDDEN);
         }
+        return null;
     }
 }
