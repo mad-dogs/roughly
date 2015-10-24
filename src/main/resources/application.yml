@@ -3,8 +3,8 @@ spring:
   datasource:
     driverClassName: org.postgresql.Driver
     url: ${DATABASE_URL}
-    username: username
-    password: password
+    username: jijdbhefsqlzkm
+    password: r_WBqi_vmUrrx-tXYJTvTS0YNB
 
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
