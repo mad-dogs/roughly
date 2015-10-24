@@ -1,1 +1,1 @@
-web: java -Dserver.port=$PORT -jar target/roughly-0.0.1-SNAPSHOT.jar
+web: java -Dserver.port=$PORT -Ddatabase.url=$DATABASE_URL -Dspring.profiles.active=prod -jar target/roughly-0.0.1-SNAPSHOT.jar

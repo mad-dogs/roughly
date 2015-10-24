@@ -9,7 +9,7 @@ public class Need extends PersistableDomainObject {
     @OneToOne
     private Item item;
 
-    @OneToOne
+    @OneToOne(optional = true)
     private Inventory fulfilledBy;
 
     public Need() {
