@@ -50,9 +50,9 @@ public class TestDataLoader {
         Item coat = this.itemRepository.save(item("Coat", Minutes.days(3)));
 
         //User
-        User user1 = this.userRepository.save(user("Bob"));
-        User user2 = this.userRepository.save(user("Chris"));
-        User user3 = this.userRepository.save(user("Dave"));
+        User user1 = this.userRepository.save(user("Bob","bob@bobmail.com","password"));
+        User user2 = this.userRepository.save(user("Chris","chris@chrismail.com","password"));
+        User user3 = this.userRepository.save(user("Dave","dave@davemail.com","password"));
 
         //Organisation
         Organisation organisation1 = this.organisationRepository.save(organisation("Mad Dogs", Lists.newArrayList(user1, user3)));
@@ -93,9 +93,11 @@ public class TestDataLoader {
         return item;
     }
 
-    private User user(String name){
+    private User user(String name, String email, String password){
         User user = new User();
         user.setName(name);
+        user.setEmail(email);
+        user.setPassword(password);
         return user;
     }
 
