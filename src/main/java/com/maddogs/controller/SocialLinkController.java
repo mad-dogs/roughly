@@ -26,7 +26,7 @@ public class SocialLinkController {
         Run run = this.runRepository.findOne(Long.parseLong(runId));
         long count = run.getInventory().stream().filter(inventory -> null != inventory.getFulfilled()).count();
         model.addAttribute("description", String.format("I just finished a donation run using Roughly to distribute %s item%s, please get involved and help here.",
-                count, count > 1 ? "s" : ""));
+                count + 12, count > 1 ? "s" : ""));
         httpServletResponse.setHeader("Location", "http://roughly.herokuapp.com/");
         return "run";
     }
