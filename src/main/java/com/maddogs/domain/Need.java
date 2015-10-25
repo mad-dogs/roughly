@@ -1,7 +1,13 @@
 package com.maddogs.domain;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
+import java.time.LocalDateTime;
 
 @Entity
 public class Need extends PersistableDomainObject {
@@ -11,6 +17,9 @@ public class Need extends PersistableDomainObject {
 
     @OneToOne(optional = true)
     private Inventory fulfilledBy;
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    private LocalDateTime fulfilledDateTime;
 
     public Need() {
     }
@@ -29,5 +38,13 @@ public class Need extends PersistableDomainObject {
 
     public void setFulfilledBy(Inventory fulfilledBy) {
         this.fulfilledBy = fulfilledBy;
+    }
+
+    public LocalDateTime getFulfilledDateTime() {
+        return fulfilledDateTime;
+    }
+
+    public void setFulfilledDateTime(LocalDateTime fulfilledDateTime) {
+        this.fulfilledDateTime = fulfilledDateTime;
     }
 }
