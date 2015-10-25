@@ -47,4 +47,8 @@ public class Inventory extends PersistableDomainObject{
     public void setFulfilled(Need fulfilled) {
         this.fulfilled = fulfilled;
     }
+
+    public long getItemId(){
+        return this.item.getId();
+    }
 }
