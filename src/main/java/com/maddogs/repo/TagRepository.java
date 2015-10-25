@@ -5,7 +5,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @RepositoryRestResource(collectionResourceRel = "tag", path = "tag", excerptProjection = TagProjection.class)
