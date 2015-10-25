@@ -1,6 +1,8 @@
 package com.maddogs.domain;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import org.springframework.data.rest.core.annotation.RestResource;
 
@@ -18,7 +20,11 @@ public class Run extends PersistableDomainObject {
     @ManyToOne
     private User creator;
     @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     private LocalDateTime createdDateTime;
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    private LocalDateTime completedDateTime;
 
     @OneToMany(cascade = CascadeType.ALL)
     @RestResource(exported = false)

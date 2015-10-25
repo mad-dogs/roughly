@@ -17,9 +17,6 @@ public class Need extends PersistableDomainObject {
 
     @OneToOne(optional = true)
     private Inventory fulfilledBy;
-    @JsonSerialize(using = LocalDateTimeSerializer.class)
-    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
-    private LocalDateTime fulfilledDateTime;
 
     public Need() {
     }
@@ -38,13 +35,5 @@ public class Need extends PersistableDomainObject {
 
     public void setFulfilledBy(Inventory fulfilledBy) {
         this.fulfilledBy = fulfilledBy;
-    }
-
-    public LocalDateTime getFulfilledDateTime() {
-        return fulfilledDateTime;
-    }
-
-    public void setFulfilledDateTime(LocalDateTime fulfilledDateTime) {
-        this.fulfilledDateTime = fulfilledDateTime;
     }
 }
