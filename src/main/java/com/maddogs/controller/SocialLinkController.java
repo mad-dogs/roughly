@@ -25,8 +25,9 @@ public class SocialLinkController {
     public String run(@PathVariable String runId, HttpServletResponse httpServletResponse, Model model){
         Run run = this.runRepository.findOne(Long.parseLong(runId));
         long count = run.getInventory().stream().filter(inventory -> null != inventory.getFulfilled()).count();
+        count += 12;
         model.addAttribute("description", String.format("I just finished a donation run using Roughly to distribute %s item%s, please get involved and help here.",
-                count + 12, count > 1 ? "s" : ""));
+                count, count > 1 ? "s" : ""));
         httpServletResponse.setHeader("Location", "http://roughly.herokuapp.com/");
         return "run";
     }
