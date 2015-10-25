@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import java.time.LocalDateTime;
@@ -15,7 +16,7 @@ public class Need extends PersistableDomainObject {
     @OneToOne
     private Item item;
 
-    @OneToOne(optional = true)
+    @OneToOne(optional = true, cascade = CascadeType.PERSIST)
     private Inventory fulfilledBy;
 
     public Need() {
