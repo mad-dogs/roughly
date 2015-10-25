@@ -6,6 +6,7 @@ import com.maddogs.repo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 import java.time.LocalDateTime;
@@ -23,11 +24,12 @@ public class TestDataLoader {
     private TagRepository tagRepository;
     private InventoryRepository inventoryRepository;
     private RunRepository runRepository;
+    private TestToolsRepository testToolsRepository;
 
     @Autowired
     public TestDataLoader(TagTypeRepository tagTypeRepository, ItemRepository itemRepository, UserRepository userRepository,
                           OrganisationRepository organisationRepository, NeedRepository needRepository, TagRepository tagRepository,
-                          InventoryRepository inventoryRepository, RunRepository runRepository){
+                          InventoryRepository inventoryRepository, RunRepository runRepository, TestToolsRepository testToolsRepository){
         this.tagTypeRepository = tagTypeRepository;
         this.itemRepository = itemRepository;
         this.userRepository = userRepository;
@@ -36,6 +38,7 @@ public class TestDataLoader {
         this.tagRepository = tagRepository;
         this.inventoryRepository = inventoryRepository;
         this.runRepository = runRepository;
+        this.testToolsRepository = testToolsRepository;
     }
 
     @PostConstruct
@@ -46,18 +49,26 @@ public class TestDataLoader {
         TagType settlementType = this.tagTypeRepository.save(tagType("Settlement", -1));
         TagType evictionType = this.tagTypeRepository.save(tagType("Eviction", Minutes.WEEK));
 
+        this.testToolsRepository.flush();
+
         // Item
         Item sleepingBag = this.itemRepository.save(item("Sleeping Bag", Minutes.days(2)));
         Item socks = this.itemRepository.save(item("Socks", Minutes.DAY)); // 2 Days
         Item coat = this.itemRepository.save(item("Coat", Minutes.days(3)));
+
+        this.testToolsRepository.flush();
 
         //User
         User user1 = this.userRepository.save(user("Bob","bob@bobmail.com","password"));
         User user2 = this.userRepository.save(user("Chris","chris@chrismail.com","password"));
         User user3 = this.userRepository.save(user("Dave","dave@davemail.com","password"));
 
+        this.testToolsRepository.flush();
+
         //Organisation
         Organisation organisation1 = this.organisationRepository.save(organisation("Mad Dogs", Lists.newArrayList(user1, user3)));
+
+        this.testToolsRepository.flush();
 
         //Need
         Need sleepingBagNeed = need(sleepingBag);
@@ -69,13 +80,14 @@ public class TestDataLoader {
         Tag socksTag = this.tagRepository.save(tag(user2, transientType, 1, 1, Lists.newArrayList(socksNeed), 53.475870, -2.250840));
         Tag coatTag = this.tagRepository.save(tag(user3, settlementType, 15, 3, Lists.newArrayList(coatNeed), 53.471586, -2.238470));
 
-        //Inventory
-        Inventory sleepingBagInventory = this.inventoryRepository.save(inventory(sleepingBag));
-        Inventory socksInventory = this.inventoryRepository.save(inventory(socks));
-        Inventory coatInventory = this.inventoryRepository.save(inventory(coat));
+        this.testToolsRepository.flush();
 
-        sleepingBagInventory.setFulfilled(sleepingBagNeed);
-        this.inventoryRepository.save(sleepingBagInventory);
+        //Inventory
+        Inventory sleepingBagInventory = inventory(sleepingBag);
+        Inventory socksInventory = inventory(socks);
+        Inventory coatInventory = inventory(coat);
+
+//        sleepingBagInventory.setFulfilled(sleepingBagNeed);
 
         //Run
         Run run1 = this.runRepository.save(run(user3, Lists.newArrayList(sleepingBagInventory,socksInventory,coatInventory)));

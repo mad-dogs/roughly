@@ -5,7 +5,7 @@ import com.maddogs.domain.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-@RepositoryRestResource(collectionResourceRel = "run", path = "run")
+@RepositoryRestResource(collectionResourceRel = "run", path = "run", excerptProjection = RunProjection.class)
 public interface RunRepository extends CrudRepository<Run,Long> {
 
 }
