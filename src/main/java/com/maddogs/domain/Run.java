@@ -1,5 +1,7 @@
 package com.maddogs.domain;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import org.springframework.data.rest.core.annotation.RestResource;
 
 import javax.persistence.CascadeType;
@@ -15,6 +17,7 @@ public class Run extends PersistableDomainObject {
 
     @ManyToOne
     private User creator;
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
     private LocalDateTime createdDateTime;
 
     @OneToMany(cascade = CascadeType.ALL)
